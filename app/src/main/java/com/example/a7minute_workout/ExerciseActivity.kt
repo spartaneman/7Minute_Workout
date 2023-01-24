@@ -15,5 +15,15 @@ class ExerciseActivity : AppCompatActivity() {
 
         //must set up support for tool bar
         setSupportActionBar(exBinding?.toolBarExercise)
+
+        //To use the back button must check that there is a support action Bar
+        if(supportActionBar != null)
+        {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        //Still works though it says its deprecated
+        exBinding?.toolBarExercise?.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 }
