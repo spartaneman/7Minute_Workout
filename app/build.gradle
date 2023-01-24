@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.example.a7minute_workout'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.a7minute_workout"
