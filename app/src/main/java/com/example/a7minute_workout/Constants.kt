@@ -1,5 +1,9 @@
 package com.example.a7minute_workout
 
+/**
+ * Constants Object class containing the ArrayLIst with
+ * the Exercise models
+ * **/
 object Constants {
     fun defaultExerciseList(): ArrayList<ExerciseModel>{
         val exerciseList = ArrayList<ExerciseModel>()
@@ -67,6 +71,7 @@ object Constants {
 
         val sidePlank = ExerciseModel(12, "Side Plank", R.drawable.ic_side_plank, false, false)
         exerciseList.add(sidePlank)
+
         return exerciseList
     }
 

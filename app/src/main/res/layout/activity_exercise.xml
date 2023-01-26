@@ -71,6 +71,26 @@
         </LinearLayout>
     </FrameLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_abdominal_crunch"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/toolBarExercise"
+        app:layout_constraintBottom_toTopOf="@+id/tvExercise"/>
+
+    <TextView
+        android:id="@+id/tvExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GET READY"
+        android:textSize="25sp"
+        android:textColor="@color/teal_700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fl_timer2"
+        android:visibility="gone"/>
     <FrameLayout
         android:id="@+id/fl_timer2"
         android:layout_width="100dp"

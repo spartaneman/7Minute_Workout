@@ -15,6 +15,9 @@ class ExerciseActivity : AppCompatActivity() {
 
     private var restProgress = 0
     private var workoutProgress = 0
+
+    private var exerciseList: ArrayList<ExerciseModel>? = null
+    private var currentExercisePosition = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //view Binding
@@ -33,13 +36,19 @@ class ExerciseActivity : AppCompatActivity() {
         exBinding?.toolBarExercise?.setNavigationOnClickListener {
             onBackPressed()
         }
+        //get the array list of
+        exerciseList = Constants.defaultExerciseList()
+
         setUpRestView()
 
     }
 
     //this way it will make sure the progress bar resets after going to another page
     private fun setUpRestView(){
+        exBinding?.tvExercise?.visibility = View.GONE
         exBinding?.flTimer2?.visibility = View.GONE
+        exBinding?.tvTitle?.visibility = View.VISIBLE
+        exBinding?.tvTitle?.text = "Rest, Get Ready"
         exBinding?.flTimer?.visibility = View.VISIBLE
         if(restTimer != null)
         {
@@ -51,7 +60,9 @@ class ExerciseActivity : AppCompatActivity() {
 
     private fun setupWorkoutView(){
         exBinding?.flTimer?.visibility = View.GONE
-        exBinding?.tvTitle?.text = "Workout"
+        exBinding?.tvTitle?.visibility = View.GONE
+        exBinding?.tvExercise?.text = exerciseList!![currentExercisePosition].getName()
+        exBinding?.tvExercise?.visibility = View.VISIBLE
         exBinding?.flTimer2?.visibility = View.VISIBLE
         if(workoutTimer != null) {
             workoutTimer?.cancel()
@@ -73,8 +84,10 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             //This automatically runs once the timer has hit zero
+            //Increasing the current exercise after every rest period
             override fun onFinish() {
                 Toast.makeText(this@ExerciseActivity, "Rest Finished", Toast.LENGTH_LONG).show()
+                currentExercisePosition++
                 setupWorkoutView()
 
             }
