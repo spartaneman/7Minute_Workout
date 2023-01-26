@@ -10,6 +10,8 @@ class ExerciseActivity : AppCompatActivity() {
 
     private var exBinding: ActivityExerciseBinding? = null
     private var restTimer: CountDownTimer? = null
+    private var exerciseTimer: CountDownTimer? = null
+
     private var restProgress = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
