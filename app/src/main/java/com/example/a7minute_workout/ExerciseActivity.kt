@@ -29,8 +29,18 @@ class ExerciseActivity : AppCompatActivity() {
         exBinding?.toolBarExercise?.setNavigationOnClickListener {
             onBackPressed()
         }
-        setRestProgressBar()
+        setUpRestView()
 
+    }
+
+    //this way it will make sure the progress bar resets after going to another page
+    private fun setUpRestView(){
+        if(restTimer != null)
+        {
+            restTimer?.cancel()
+            restProgress = 0
+        }
+        setRestProgressBar()
     }
 
     //This is a timer for rest period
