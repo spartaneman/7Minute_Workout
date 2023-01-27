@@ -50,6 +50,7 @@ class ExerciseActivity : AppCompatActivity() {
         exBinding?.tvTitle?.visibility = View.VISIBLE
         exBinding?.tvTitle?.text = "Rest, Get Ready"
         exBinding?.flTimer?.visibility = View.VISIBLE
+        exBinding?.ivExercise?.visibility = View.GONE
         if(restTimer != null)
         {
             restTimer?.cancel()
@@ -59,11 +60,14 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     private fun setupWorkoutView(){
+
         exBinding?.flTimer?.visibility = View.GONE
         exBinding?.tvTitle?.visibility = View.GONE
         exBinding?.tvExercise?.text = exerciseList!![currentExercisePosition].getName()
         exBinding?.tvExercise?.visibility = View.VISIBLE
         exBinding?.flTimer2?.visibility = View.VISIBLE
+        exBinding?.ivExercise?.visibility = View.VISIBLE
+        exBinding?.ivExercise?.setImageResource(exerciseList!![currentExercisePosition].getImage())
         if(workoutTimer != null) {
             workoutTimer?.cancel()
             workoutProgress = 0
