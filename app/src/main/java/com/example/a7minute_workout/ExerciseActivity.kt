@@ -45,12 +45,19 @@ class ExerciseActivity : AppCompatActivity() {
 
     //this way it will make sure the progress bar resets after going to another page
     private fun setUpRestView(){
+
         exBinding?.tvExercise?.visibility = View.GONE
         exBinding?.flTimer2?.visibility = View.GONE
         exBinding?.tvTitle?.visibility = View.VISIBLE
         exBinding?.tvTitle?.text = "Rest, Get Ready"
         exBinding?.flTimer?.visibility = View.VISIBLE
         exBinding?.ivExercise?.visibility = View.GONE
+
+        exBinding?.tvUpcoming?.visibility = View.VISIBLE
+        exBinding?.tvUpcomingExercise?.visibility = View.VISIBLE
+        exBinding?.tvUpcoming?.text = "UPCOMING EXERCISE:"
+        exBinding?.tvUpcomingExercise?.text = exerciseList!![currentExercisePosition+1]?.getName()
+
         if(restTimer != null)
         {
             restTimer?.cancel()
@@ -61,6 +68,9 @@ class ExerciseActivity : AppCompatActivity() {
 
     private fun setupWorkoutView(){
 
+        //Change visibility for rest variables to gone
+        //set visibility to workout values to visible
+        //change text and image
         exBinding?.flTimer?.visibility = View.GONE
         exBinding?.tvTitle?.visibility = View.GONE
         exBinding?.tvExercise?.text = exerciseList!![currentExercisePosition].getName()
@@ -68,6 +78,11 @@ class ExerciseActivity : AppCompatActivity() {
         exBinding?.flTimer2?.visibility = View.VISIBLE
         exBinding?.ivExercise?.visibility = View.VISIBLE
         exBinding?.ivExercise?.setImageResource(exerciseList!![currentExercisePosition].getImage())
+
+        exBinding?.tvUpcoming?.visibility = View.GONE
+        exBinding?.tvUpcomingExercise?.visibility = View.GONE
+
+        //
         if(workoutTimer != null) {
             workoutTimer?.cancel()
             workoutProgress = 0
@@ -111,8 +126,14 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                Toast.makeText(this@ExerciseActivity, "Rest Time", Toast.LENGTH_LONG).show()
-                setUpRestView()
+                if(currentExercisePosition < (exerciseList?.size!! - 1)) {
+                    Toast.makeText(this@ExerciseActivity, "Rest Time", Toast.LENGTH_LONG).show()
+                    setUpRestView()
+                }
+                else
+                {
+                    Toast.makeText(this@ExerciseActivity, "7 minute workout complete", Toast.LENGTH_LONG).show()
+                }
             }
 
         }.start()
